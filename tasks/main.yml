@@ -3,9 +3,9 @@
 - name: Assert ProxyCommand Attributes
   assert:
     that:
-      - target_host_range is defined
+      - bastion_target_host_range is defined
       - bastion_host_name is defined
-      - protected_private_key is defined
+      - bastion_protected_private_key is defined
     msg: Missing attributes required to set ProxyCommand
 
 - name: Update SSH Config with ProxyCommand to Bastion Configuration
@@ -15,11 +15,11 @@
     backup: yes
     mode: 0600
     block: |
-      Host {{ target_host_range }}
+      Host {{ bastion_target_host_range }}
         ProxyCommand ssh -W %h:%p {{ bastion_host_name }}
-        IdentityFile {{ protected_private_key | default('~/.ssh/id_rsa') }}
+        IdentityFile {{ bastion_protected_private_key | default('~/.ssh/id_rsa') }}
 #  when: ansible_distribution == 'CentOS'
-#
+
 #- name: Update SSH Config with ProxyCommand to Bastion Configuration for GMac
 #  blockinfile:
 #    path: ~/.ssh/config
@@ -27,7 +27,7 @@
 #    backup: yes
 #    mode: 0600
 #    block: |
-#      Host {{ target_host_range }}
+#      Host {{ bastion_target_host_range }}
 #        ProxyCommand corp-ssh-helper -W %h:%p {{ bastion_host_name }}
-#        IdentityFile {{ protected_private_key | default('~/.ssh/id_rsa') }}
+#        IdentityFile {{ bastion_protected_private_key | default('~/.ssh/id_rsa') }}
 #  when: ansible_distribution == 'MacOSX'

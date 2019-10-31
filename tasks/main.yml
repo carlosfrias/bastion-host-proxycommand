@@ -20,4 +20,4 @@
     block: |
       Host {{ bastion_target_host_range }}
         ProxyCommand ssh -W %h:%p {{ bastion_host_name }}
-        IdentityFile {{ bastion_protected_private_key | default('~/.ssh/id_rsa') }}
+        IdentityFile "{{ bastion_protected_private_key | default('~/.ssh/id_rsa') }}"

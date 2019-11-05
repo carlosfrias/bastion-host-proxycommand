@@ -15,8 +15,8 @@
     backup: yes
     mode: 0600
     marker: "# {mark} ANSIBLE MANAGED BLOCK"
-    marker_begin: "PROXYCOMMAND_CONFIG_BEGIN"
-    marker_end: "PROXYCOMMAND_CONFIG_END"
+    marker_begin: "{{ marker_begin }}"
+    marker_end: "{{ marker_end }}"
     block: |
       Host {{ bastion_target_host_range }}
         ProxyCommand ssh -W %h:%p {{ bastion_host_name }}

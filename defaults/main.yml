@@ -1,2 +1,4 @@
 ---
 # defaults file for bastion-host-proxycommand
+marker_begin: "BASTION_HOST_PROXYCOMMAND_CONFIG_BEGIN"
+marker_end: "BASTION_HOST_PROXYCOMMAND_CONFIG_END"
